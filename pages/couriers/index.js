@@ -22,10 +22,6 @@ const CouriersTable = () => {
     const [extendShiftLoader, setExtendShiftLoader] = useState(false);
     const [changeStatusLoader, setChangeStatusLoader] = useState(false);
 
-    // VARIABLES
-    let page = 1;
-    let rowsPerPage = 25;
-
     // STATES
     const [globalFilter, setGlobalFilter] = useState(null);
     const [users, setUsers] = useState([]);
@@ -219,8 +215,8 @@ const CouriersTable = () => {
             <DataTable
                 value={users}
                 paginator
-                first={page}
-                rows={rowsPerPage}
+                paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+                rows={25}
                 rowsPerPageOptions={[5, 10, 25, 50]}
                 sortMode="multiple"
                 globalFilter={globalFilter}

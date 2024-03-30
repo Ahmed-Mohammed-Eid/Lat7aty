@@ -449,6 +449,15 @@ const OrdersTable = () => {
                     field="_id"
                     header="Actions"
                     body={(rowData) => {
+                        const lastStatus = rowData.orderStatus[rowData.orderStatus.length - 1]?.state;
+                        const orderType = rowData.orderType;
+                        let showAssignButton = false;
+
+                        // IF THE ORDER TYPE IS NOT INSTANT AND AT THE SAME TIME THE LAST STATUS IS NOT CANCELED OR REJECTED THEN SHOW THE ASSIGN BUTTON
+                        if (orderType !== 'instant' && (lastStatus !== "canceled")) {
+                            showAssignButton = true;
+                        }
+
                         return (
                             <div className="flex gap-2">
                                 <button
@@ -460,7 +469,7 @@ const OrdersTable = () => {
                                 >
                                     View
                                 </button>
-                                {rowData.orderType !== 'instant' && (<button
+                                {showAssignButton && (<button
                                     className="bg-success text-white px-3 py-1 rounded-md pointer border-none custom-button"
                                     onClick={() => {
                                         // GET AVAILABLE COURIERS
