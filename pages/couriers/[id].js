@@ -213,14 +213,14 @@ export default function Courier({ courier, orders }) {
                                         // GET THE LAST STATUS  OBJECT
                                         const lastStatus =
                                             rowData.orderStatus[
-                                                rowData.orderStatus.length - 1
-                                            ]?.state;
+                                            rowData.orderStatus.length - 1
+                                                ]?.state;
                                         // RETURN THE LAST STATUS WITH CUSTOM STYLING AND MY STATUS WILL BE [pending, accepted, received, delivered]
                                         if (lastStatus === "pending") {
                                             return (
                                                 <span
                                                     className="px-3 py-1 text-white rounded-full bg-yellow-500 capitalize"
-                                                    style={{ fontSize: "11px" }}
+                                                    style={{fontSize: "11px"}}
                                                 >
                                                     {lastStatus}
                                                 </span>
@@ -229,7 +229,7 @@ export default function Courier({ courier, orders }) {
                                             return (
                                                 <span
                                                     className="px-3 py-1 text-white rounded-full bg-blue-500 capitalize"
-                                                    style={{ fontSize: "11px" }}
+                                                    style={{fontSize: "11px"}}
                                                 >
                                                     {lastStatus}
                                                 </span>
@@ -238,7 +238,7 @@ export default function Courier({ courier, orders }) {
                                             return (
                                                 <span
                                                     className="px-3 py-1 text-white rounded-full bg-cyan-500 capitalize"
-                                                    style={{ fontSize: "11px" }}
+                                                    style={{fontSize: "11px"}}
                                                 >
                                                     {lastStatus}
                                                 </span>
@@ -247,7 +247,7 @@ export default function Courier({ courier, orders }) {
                                             return (
                                                 <span
                                                     className="px-3 py-1 text-white rounded-full bg-red-500 capitalize"
-                                                    style={{ fontSize: "11px" }}
+                                                    style={{fontSize: "11px"}}
                                                 >
                                                     {lastStatus}
                                                 </span>
@@ -256,7 +256,7 @@ export default function Courier({ courier, orders }) {
                                             return (
                                                 <span
                                                     className="px-3 py-1 text-white rounded-full bg-red-500 capitalize"
-                                                    style={{ fontSize: "11px" }}
+                                                    style={{fontSize: "11px"}}
                                                 >
                                                     {lastStatus}
                                                 </span>
@@ -267,7 +267,7 @@ export default function Courier({ courier, orders }) {
                                             return (
                                                 <span
                                                     className="px-3 py-1 text-white rounded-full bg-purple-500 capitalize"
-                                                    style={{ fontSize: "11px" }}
+                                                    style={{fontSize: "11px"}}
                                                 >
                                                     {lastStatus}
                                                 </span>
@@ -276,7 +276,7 @@ export default function Courier({ courier, orders }) {
                                             return (
                                                 <span
                                                     className="px-3 py-1 text-white rounded-full bg-green-500 capitalize"
-                                                    style={{ fontSize: "11px" }}
+                                                    style={{fontSize: "11px"}}
                                                 >
                                                     {lastStatus}
                                                 </span>
@@ -319,7 +319,7 @@ export default function Courier({ courier, orders }) {
                                             return (
                                                 <span
                                                     className="px-3 py-1 text-white rounded-full bg-yellow-500 capitalize"
-                                                    style={{ fontSize: "11px" }}
+                                                    style={{fontSize: "11px"}}
                                                 >
                                                     {rowData.paymentStatus}
                                                 </span>
@@ -331,7 +331,7 @@ export default function Courier({ courier, orders }) {
                                             return (
                                                 <span
                                                     className="px-3 py-1 text-white rounded-full bg-green-500 capitalize"
-                                                    style={{ fontSize: "11px" }}
+                                                    style={{fontSize: "11px"}}
                                                 >
                                                     {rowData.paymentStatus}
                                                 </span>
@@ -369,7 +369,7 @@ export default function Courier({ courier, orders }) {
                         <Dialog
                             header="ORDER INFO"
                             visible={orderInfoDialog}
-                            style={{ width: "90vw", maxWidth: "600px" }}
+                            style={{width: "90vw", maxWidth: "600px" }}
                             onHide={() => {
                                 // CLOSE THE DIALOG AND IF DIALOG IS CLOSED, SET THE SELECTED order TO NULL
                                 setOrderInfoDialog(false);
@@ -381,20 +381,24 @@ export default function Courier({ courier, orders }) {
                         >
                             <div className="grid col-12">
                                 {selectedOrder?.parcelImage && (<div className="col-12">
-                                    <Image 
-                                    src={selectedOrder?.parcelImage} 
-                                    alt="Parcel Image" 
-                                    width={200} 
-                                    height={200} 
-                                    style={{
-                                        objectFit: "cover",
-                                        objectPosition: "center"
-                                    }}
+                                    <Image
+                                        src={selectedOrder?.parcelImage}
+                                        alt="Parcel Image"
+                                        width={200}
+                                        height={200}
+                                        style={{
+                                            objectFit: "cover",
+                                            objectPosition: "center"
+                                        }}
                                     />
                                 </div>)}
                                 <div className="col-6">
                                     <div className="font-bold">CLIENT ID</div>
                                     <div>{selectedOrder?.clientId}</div>
+                                </div>
+                                <div className="col-6">
+                                    <div className="font-bold">ORDER NUMBER</div>
+                                    <div>{selectedOrder?.orderNumber}</div>
                                 </div>
                                 <div className={"col-6"}>
                                     <div className="font-bold">PAYER</div>
@@ -417,6 +421,14 @@ export default function Courier({ courier, orders }) {
                                         SENDER PHONE
                                     </div>
                                     <div>{selectedOrder?.senderPhone}</div>
+                                </div>
+                                <div className="col-6">
+                                    <div className={"font-bold"}>ORDER PRICE</div>
+                                    <div>{selectedOrder?.deliveryPrice}</div>
+                                </div>
+                                <div className="col-6">
+                                    <div className={"font-bold"}>COLLECTION AMOUNT</div>
+                                    <div>{selectedOrder?.collectionAmount}</div>
                                 </div>
                                 <div className="col-6">
                                     <div className="font-bold">
@@ -486,14 +498,18 @@ export default function Courier({ courier, orders }) {
                                 </div>
                                 <div className="col-6">
                                     <div className="font-bold">FROM POINT</div>
-                                    <Link href={`https://www.google.com/maps?q=${selectedOrder?.fromPoint?.lat},${selectedOrder?.fromPoint?.lng}`} target="_blank">
+                                    <Link
+                                        href={`https://www.google.com/maps?q=${selectedOrder?.fromPoint?.lat},${selectedOrder?.fromPoint?.lng}`}
+                                        target="_blank">
                                         <span className="mr-2">Lat: {selectedOrder?.fromPoint?.lat}</span>
                                         <span>Lng: {selectedOrder?.fromPoint?.lng}</span>
                                     </Link>
                                 </div>
                                 <div className="col-6">
                                     <div className="font-bold">TO POINT</div>
-                                    <Link href={`https://www.google.com/maps?q=${selectedOrder?.toPoint?.lat},${selectedOrder?.toPoint?.lng}`} target="_blank">
+                                    <Link
+                                        href={`https://www.google.com/maps?q=${selectedOrder?.toPoint?.lat},${selectedOrder?.toPoint?.lng}`}
+                                        target="_blank">
                                         <span className="mr-2">Lat: {selectedOrder?.toPoint?.lat}</span>
                                         <span>Lng: {selectedOrder?.toPoint?.lng}</span>
                                     </Link>
@@ -513,9 +529,9 @@ export default function Courier({ courier, orders }) {
 
 export async function getServerSideProps(ctx) {
     // GET THE ID FROM THE URL
-    const { id } = ctx.query;
+    const {id} = ctx.query;
     // GET THE TOKEN FROM THE REQUEST
-    const { token } = ctx.req.cookies;
+    const {token} = ctx.req.cookies;
     // GET THE COURIER FROM THE API AND GET THE ORDERS FROM ANOTHER API ENDPOINT USING THE COURIER ID AND THEY BOTH NEED THE TOKEN
     if (!token) {
         return {

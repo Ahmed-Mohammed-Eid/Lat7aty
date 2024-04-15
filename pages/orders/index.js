@@ -629,6 +629,10 @@ const OrdersTable = () => {
                         <div className="font-bold">CLIENT ID</div>
                         <div>{selectedOrder?.clientId}</div>
                     </div>
+                    <div className="col-6">
+                        <div className="font-bold">ORDER NUMBER</div>
+                        <div>{selectedOrder?.orderNumber}</div>
+                    </div>
                     <div className={"col-6"}>
                         <div className="font-bold">PAYER</div>
                         <div>{selectedOrder?.payer}</div>
@@ -652,6 +656,10 @@ const OrdersTable = () => {
                     <div className="col-6">
                         <div className={"font-bold"}>ORDER PRICE</div>
                         <div>{selectedOrder?.deliveryPrice}</div>
+                    </div>
+                    <div className="col-6">
+                        <div className={"font-bold"}>COLLECTION AMOUNT</div>
+                        <div>{selectedOrder?.collectionAmount}</div>
                     </div>
                     <div className="col-6">
                         <div className="font-bold">RECEIVER NAME</div>
