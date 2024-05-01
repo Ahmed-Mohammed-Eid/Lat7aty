@@ -8,6 +8,7 @@ import {FileUpload} from "primereact/fileupload";
 import {Button} from "primereact/button";
 import {ProgressSpinner} from "primereact/progressspinner";
 import {Dialog} from "primereact/dialog";
+import { Password } from 'primereact/password';
 // NOTIFICATION
 import {toast} from "react-hot-toast";
 // AXIOS
@@ -35,6 +36,8 @@ const CourierForm = ({id, courier: courierServer}) => {
         files: [],
         licenseNumber: "",
         hasFridge: false,
+        password: "",
+        confirmPassword: "",
     });
     const [userInfo, setUserInfo] = useState({
         username: "",
@@ -54,6 +57,14 @@ const CourierForm = ({id, courier: courierServer}) => {
             return;
         }
 
+        // Check if password and confirm password are the same
+        if (courier.password !== courier.confirmPassword) {
+            toast.error("Passwords do not match");
+            return;
+        }
+
+
+
         // Create FormData object
         const formData = new FormData();
         // Append data to FormData object
@@ -69,6 +80,10 @@ const CourierForm = ({id, courier: courierServer}) => {
         formData.append("workingShiftId", courier.workingShiftId);
         formData.append("licenseNumber", courier.licenseNumber);
         formData.append("hasFridge", courier.hasFridge);
+        formData.append("password", courier.password);
+        formData.append("confirmPassword", courier.confirmPassword);
+
+
         // Append files to FormData object
         for (let i = 0; i < courier.files.length; i++) {
             formData.append("files", courier.files[i]);
@@ -325,6 +340,42 @@ const CourierForm = ({id, courier: courierServer}) => {
                                 })
                             }
                             placeholder="License Number"
+                        />
+                    </div>
+
+                    {/* PASSWORD */}
+                    <div className="field col-12 md:col-6">
+                        <label htmlFor="password">Password</label>
+                        <Password
+                            id="password"
+                            value={courier.password}
+                            onChange={(e) =>
+                                setCourier({
+                                    ...courier,
+                                    password: e.target.value,
+                                })
+                            }
+                            placeholder="Password"
+                            feedback={false}
+                            toggleMask
+                        />
+                    </div>
+
+                    {/* CONFIRM PASSWORD */}
+                    <div className="field col-12 md:col-6">
+                        <label htmlFor="confirm-password">Confirm Password</label>
+                        <Password
+                            id="confirm-password"
+                            value={courier.confirmPassword}
+                            onChange={(e) =>
+                                setCourier({
+                                    ...courier,
+                                    confirmPassword: e.target.value,
+                                })
+                            }
+                            placeholder="Confirm Password"
+                            feedback={false}
+                            toggleMask
                         />
                     </div>
 
