@@ -58,6 +58,20 @@ const OrdersTable = () => {
 
         // GET ORDERS
         if (token) {
+            getAllOrders();
+        } else {
+            toast.error("You are not authorized to access this page");
+        }
+    }, [currentPage, loadDataOption]);
+
+
+    // HANDLER TO GET ALL ORDERS
+    const getAllOrders = () => {
+        // GET THE TOKEN FROM LOCAL STORAGE
+        const token = localStorage.getItem("token");
+
+        // GET ORDERS
+        if (token) {
             // GET ORDERS
             axios
                 .get(`https://api.lathaty.com/api/v1/all/orders`, {
@@ -65,7 +79,7 @@ const OrdersTable = () => {
                         Authorization: `Bearer ${token}`,
                     },
                     params: {
-                        page: currentPage,
+                        page: page,
                     },
                 })
                 .then((res) => {
@@ -97,7 +111,7 @@ const OrdersTable = () => {
         } else {
             toast.error("You are not authorized to access this page");
         }
-    }, [currentPage, loadDataOption]);
+    }
 
     // GLOBAL FILTER
     const onGlobalFilter = (e) => {
@@ -238,6 +252,16 @@ const OrdersTable = () => {
             });
         }
     }
+
+    // SOCKET IO
+    useEffect(() => {
+        const socket = getIo();
+
+        socket.on("new_order", (event) => {
+            getAllOrders();
+            toast.success(event?.message || "New order received");
+        })
+    }, [])
 
     return (
         <div className="card">
