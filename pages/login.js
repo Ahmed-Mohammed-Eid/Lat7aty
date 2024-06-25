@@ -66,11 +66,13 @@ const LoginPage = () => {
                 localStorage.setItem("token", res.data.token);
                 localStorage.setItem("role", res.data.role);
                 localStorage.setItem("farmId", res.data.farmId);
+                localStorage.setItem("userId", res.data.userId);
 
                 // SET THE COOKIES
                 document.cookie = `token=${res.data.token}; path=/`;
                 document.cookie = `role=${res.data.role}; path=/`;
                 document.cookie = `farmId=${res.data.farmId}; path=/`;
+                document.cookie = `userId=${res.data.userId}; path=/`;
 
                 if(res.data.role === "admin"){
                     // REDIRECT TO HOME PAGE

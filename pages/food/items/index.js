@@ -152,15 +152,12 @@ const ItemsTable = () => {
             <DataTable
                 value={foodItems}
                 paginator
-                first={page}
                 rows={rowsPerPage}
-                rowsPerPageOptions={[5, 10, 25, 50]}
-                sortMode="multiple"
+                rowsPerPageOptions={[25, 50, 100]}
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} items"
                 globalFilter={globalFilter}
-                emptyMessage="No records found"
-                // Max height of the table container
-                scrollable
-                scrollHeight="calc(100vh - 370px)"
+                emptyMessage="No items found"
+                paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
             >
                 <Column
                     field="itemImage"

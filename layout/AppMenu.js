@@ -96,6 +96,13 @@ const AppMenu = () => {
     ];
 
     const farmerModel = [
+        // ORDERS
+        {
+            label: 'Orders',
+            items: [
+                {label: 'Orders List', icon: 'pi pi-list', to: '/business/orders'},
+            ]
+        },
         {
             label: 'Business Products',
             items: [
