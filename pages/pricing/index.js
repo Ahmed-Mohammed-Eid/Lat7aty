@@ -41,10 +41,7 @@ export default function Pricing() {
             toast.error('Please select a price type');
             return;
         }
-        if (!pricing.pricePerKm) {
-            toast.error('Please enter a price per KM');
-            return;
-        }
+
         if (!pricing.minimumPrice) {
             toast.error('Please enter a minimum price');
             return;
